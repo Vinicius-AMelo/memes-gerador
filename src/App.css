@@ -1,38 +1,100 @@
+:root {
+  --gradient1: #672280;
+  --gradiennt2: #A626D3;
+  --body--bg: #E5E5E5;
+  --app--bg: #ffffff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+body {
+  background-color: var(--body--bg);
+}
+
+
 .App {
-  text-align: center;
+  background-color: var(--app--bg);
+  width: 550px;
+  margin: 40px auto;
+
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.main--nav {
+  height: 65px;
+  background-image: linear-gradient(90deg, var(--gradient1), var(--gradiennt2));
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#troll--nav {
+  margin: 20px;
+  gap: 7px;
+  font-family: 'Karla', 'sans-serif';
+  color: #ffffff;
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+
 }
 
-.App-link {
-  color: #61dafb;
+.trollface {
+  width: 31.5px;
+  height: 26px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#nav--text {
+  margin-right: 20px;
+  font-family: 'Inter', 'sans-serif';
+  font-size: 12px;
+  color: #ffffff;
+}
+
+.main--interface {
+  margin: 36px;
+  background-color: var(--app--bg);
+  display: flex;
+  flex-direction: column;
+}
+
+.input--div {
+  display: flex;
+  gap: 17px;
+}
+
+.input--item {
+  width: 230px;
+  height: 35px;
+  border: 1px solid #D5D4D8;
+  box-sizing: border-box;
+  border-radius: 5px;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+button{
+  height: 40px;
+  border: none;
+  border-radius: 5px;
+  background-image: linear-gradient(90deg, var(--gradient1), var(--gradiennt2));
+  font-family: 'Karla', 'sans-serif';
+  font-weight: 700;
+  font-size: 16px;
+  color: #ffffff;
+  margin-top: 15px;
+  cursor: pointer;
+}
+
+button:hover{
+  background-image: linear-gradient(90deg, #541c68, #8b1fb3)
+}
+
+.img--meme{
+  width: 477px;
+  height: 268px;
+  margin: 0 36px 55px 36px;
 }
