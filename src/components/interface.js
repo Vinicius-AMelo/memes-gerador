@@ -1,32 +1,68 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import '../App.css';
 import MemesData from './memesData'
 
 
-export default function Interface(i){
+export default function Interface(i) {
 
-    const [urlSrc, setUrlSrc] = useState('')
+    const [meme, setMeme] = useState({
+        topText: '',
+        bottomText: '',
+        randomImage: '',
+    })
+
+    const [allMemeImages, setAllMemeImages] = useState(MemesData)
     
-    function handleSubmit(){
-        const dataArr = MemesData.data.memes
+    function handleSubmit(e) {
+        e.preventDefault()
+        const dataArr = allMemeImages.data.memes
         i = Math.floor(Math.random() * (100 + 0) - 0)
-        const  url = dataArr[i].url
-        setUrlSrc(url)
-        
+        const url = dataArr[i].url
+        setMeme(prevMeme => {
+            return {
+                ...prevMeme,
+                randomImage: url
+            }
+        })
     }
+    
+    console.log(meme)
 
+    function handleChange(e){
+        const {name, value} = e.target
+        setMeme(prevMeme => {
+            return {
+                ...prevMeme,
+                [name]: value
+            }
+        })
+    }
+    
     return (
-        <div className="main--interface">
+        <form className="main--interface">
             <div className="input--div">
-            <input className='input--item' type='text'></input>
-            <input className='input--item' type='text'></input>
+                <input 
+                className='input--item top'
+                type='text'
+                placeholder='Texto Superior'
+                name='topText'
+                onChange={handleChange}
+                />
+                <input 
+                className='input--item' 
+                type='text'
+                placeholder='Texto Inferior'
+                name='bottomText'
+                onChange={handleChange}/>
             </div>
             <button onClick={handleSubmit}>Get a new meme Image</button>
             <div className="main--meme">
-            {urlSrc && <img className='img--meme' src={urlSrc} alt='meme'></img>}
-        </div>
+                {meme.randomImage && <img className='img--meme' src={meme.randomImage} alt='meme'></img>}
+                <h1 className='meme--text top'>{meme.topText}</h1>
+                <h1 className='meme--text bottom'>{meme.bottomText}</h1>
+            </div>
 
-        </div>
-        
+        </form>
+
     )
 }
