@@ -57,7 +57,7 @@ export default function Interface(i) {
             </div>
             <button onClick={handleSubmit}>Get a new meme Image</button>
             <div className="main--meme">
-                {meme.randomImage && <img className='img--meme' src={meme.randomImage} alt='meme'></img>}
+                {meme.randomImage && <img className='img--meme' src={meme.randomImage} alt='memes'></img>}
                 <h1 className='meme--text top'>{meme.topText}</h1>
                 <h1 className='meme--text bottom'>{meme.bottomText}</h1>
             </div>
