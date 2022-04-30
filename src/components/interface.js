@@ -11,11 +11,11 @@ export default function Interface(i) {
         randomImage: '',
     })
 
-    const [allMemeImages, setAllMemeImages] = useState(MemesData)
+    // const [allMemeImages, setAllMemeImages] = useState(MemesData)
     
     function handleSubmit(e) {
         e.preventDefault()
-        const dataArr = allMemeImages.data.memes
+        const dataArr = MemesData.data.memes
         i = Math.floor(Math.random() * (100 + 0) - 0)
         const url = dataArr[i].url
         setMeme(prevMeme => {
