@@ -1,23 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../App.css';
-import MemesData from './memesData'
-
 
 export default function Interface(i) {
 
     const [meme, setMeme] = useState({
         topText: '',
         bottomText: '',
-        randomImage: '',
+        randomImage: 'https://i.imgflip.com/grr.jpg',
     })
 
-    // const [allMemeImages, setAllMemeImages] = useState(MemesData)
-    
+    const [allMemeImages, setAllMemeImages] = useState('')
+
+    useEffect(() => {
+        fetch("https://api.imgflip.com/get_memes")
+            .then(res => res.json())
+            .then(data => setAllMemeImages(data.data.memes))
+    }, [meme])
+
+
     function handleSubmit(e) {
         e.preventDefault()
-        const dataArr = MemesData.data.memes
         i = Math.floor(Math.random() * (100 + 0) - 0)
-        const url = dataArr[i].url
+        const url = allMemeImages[i].url
+
         setMeme(prevMeme => {
             return {
                 ...prevMeme,
@@ -25,11 +30,9 @@ export default function Interface(i) {
             }
         })
     }
-    
-    console.log(meme)
 
-    function handleChange(e){
-        const {name, value} = e.target
+    function handleChange(e) {
+        const { name, value } = e.target
         setMeme(prevMeme => {
             return {
                 ...prevMeme,
@@ -37,23 +40,23 @@ export default function Interface(i) {
             }
         })
     }
-    
+
     return (
         <form className="main--interface">
             <div className="input--div">
-                <input 
-                className='input--item top'
-                type='text'
-                placeholder='Texto Superior'
-                name='topText'
-                onChange={handleChange}
+                <input
+                    className='input--item top'
+                    type='text'
+                    placeholder='Texto Superior'
+                    name='topText'
+                    onChange={handleChange}
                 />
-                <input 
-                className='input--item' 
-                type='text'
-                placeholder='Texto Inferior'
-                name='bottomText'
-                onChange={handleChange}/>
+                <input
+                    className='input--item'
+                    type='text'
+                    placeholder='Texto Inferior'
+                    name='bottomText'
+                    onChange={handleChange} />
             </div>
             <button onClick={handleSubmit}>Get a new meme Image</button>
             <div className="main--meme">
@@ -66,3 +69,4 @@ export default function Interface(i) {
 
     )
 }
+
